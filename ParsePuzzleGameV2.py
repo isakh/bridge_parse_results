@@ -104,7 +104,8 @@ for gamePlayedData in gamePlayedDataList:
 	
 	#Calculate the Minimum Total Number of Turns required given the Starting Map
 	numTiles = (int(levelDiff) + 1) * 4
-	turnsMin = (numTiles - sumCorrect) / 2
+	#ensures that if an odd number of tiles need swapping, the even ceiling will be moved 
+	turnsMin = numpy.ceil(float(numTiles - sumCorrect) / 2) 
 	
 	turnsTaken = float(numTurns)
 	print "turnsMin: ", turnsMin, "type(turnsMin): ", type(turnsMin), " | turnsTaken: ", turnsTaken, " | type(turnsTaken): ", type(turnsTaken)
