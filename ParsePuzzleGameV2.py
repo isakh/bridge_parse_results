@@ -56,7 +56,8 @@ for gamePlayedData in gamePlayedDataList:
 	
 	speciesIDs = [0] * (int(levelDiff) + 1)		#This list holds the species associated with a game
 	speciesInserted = 0				#This keeps track of the number of species found
-	print "speciesIDs: ", speciesIDs, "| type(speciesIDs): " , type(speciesIDs), "speciesInserted: ", speciesInserted
+	#debug: verify that null array has been instantiated, to check, uncomment next line
+	#print "speciesIDs: ", speciesIDs, "| type(speciesIDs): " , type(speciesIDs), "speciesInserted: ", speciesInserted
 	
 	#iterate over cells in list and identify the target row and species for each cell - this
 	#loop will also determine which speciesIDs are present for a given game map and update speciesIDs
@@ -76,6 +77,7 @@ for gamePlayedData in gamePlayedDataList:
 		if not curSpecies in speciesIDs:
 			speciesIDs[speciesInserted] = curSpecies
 			speciesInserted = speciesInserted + 1
+		#debug: to check that speciesID list has been populated uncomment next line
 		#print "populated speciesIDs: ", speciesIDs
 		
 		countMatrixTargetCol = speciesIDs.index(curSpecies)
