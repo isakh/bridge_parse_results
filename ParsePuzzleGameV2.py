@@ -33,7 +33,7 @@ for gamePlayedData in gamePlayedDataList:
 	print "Difficulty Level Is: ", levelDiff 
 
 	#and extract the number of turns taken
-	numTurns = (data[1] - 1)
+	numTurns = (int(data[1]) - 1)
 	print "Num Turns Taken: ", numTurns
 
 	#calculate the minimum number of turns needed to solve the puzzle based on the starting map
