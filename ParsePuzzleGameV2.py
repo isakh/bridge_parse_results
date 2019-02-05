@@ -62,7 +62,8 @@ for gamePlayedData in gamePlayedDataList:
 	#loop will also determine which speciesIDs are present for a given game map and update speciesIDs
 	for cell in boardCoordList:
 		
-		#the species associated with the current cell may be a 1 or 2 character number
+		#the species associated with the current cell may be a 1 or 2 character number 
+		#if subsequent datasets allow for more than 99 species this needs to be updated
 		if (cell[6] == '.'):
 			curSpecies = int(cell[5])
 		elif (cell[7] == '.'):	
