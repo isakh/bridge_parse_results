@@ -7,13 +7,13 @@ import numpy
 
 '''
 import the .csv file containing the output of the entry associated with the swapGameMapList
-the argument to this is the name of the .csv file to be parsed
+the argument to this script is the name of the .csv file to be parsed
 '''
 
 gameListFile = open(sys.argv[1], 'rb')
 
 '''
-the first value in each line is the difficulty, the second value in each line is the 
+the first value in each line is game difficulty, the second value in each line is the 
 numTurnsTaken (off by 1 as this is stored in the database as the number of board maps whilst
 turns are transitions between board maps), the third value in each line is the swapGameMapList 
 - this contains information mapping coordinates to speciesIDs.
@@ -33,10 +33,10 @@ for gamePlayedData in gamePlayedDataList:
 	print "Difficulty Level Is: ", levelDiff 
 
 	#and extract the number of turns taken
-	numTurns = data[1] - 1
+	numTurns = (data[1] - 1)
 	print "Num Turns Taken: ", numTurns
 
-	#to calculate the minimum number of turns needed to solve the puzzle based on the starting map
+	#calculate the minimum number of turns needed to solve the puzzle based on the starting map
 	
 	#start by cleaning the initBoardMap string
 	initBoardMap = data[2]
@@ -55,7 +55,7 @@ for gamePlayedData in gamePlayedDataList:
 	#print "countMatrix: ", countMatrix
 	
 	speciesIDs = [0] * (int(levelDiff) + 1)		#This list holds the species associated with a game
-	speciesInserted = 0							#This keeps track of the number of species found
+	speciesInserted = 0				#This keeps track of the number of species found
 	print "speciesIDs: ", speciesIDs, "| type(speciesIDs): " , type(speciesIDs), "speciesInserted: ", speciesInserted
 	
 	#iterate over cells in list and identify the target row and species for each cell - this
@@ -63,7 +63,7 @@ for gamePlayedData in gamePlayedDataList:
 	for cell in boardCoordList:
 		
 		#the species associated with the current cell may be a 1 or 2 character number 
-		#if subsequent datasets allow for more than 99 species this needs to be updated
+		#NOTE: if subsequent datasets allow for more than 99 species this needs to be updated
 		if (cell[6] == '.'):
 			curSpecies = int(cell[5])
 		elif (cell[7] == '.'):	
@@ -81,7 +81,7 @@ for gamePlayedData in gamePlayedDataList:
 		countMatrixTargetCol = speciesIDs.index(curSpecies)
 		countMatrixTargetRow = int(cell[1])
 				
-		#debug: print state of current cell being checked			
+		#debug: print state of current cell being checked, uncomment as needed			
 		#print "cell: ", cell, "countMatrixTargetCol: ", countMatrixTargetCol, "| countMatrixTargetRow: ", countMatrixTargetRow, "| curSpecies]: ", curSpecies
 			
 		#update state of countMatrix to reflect additional cell for a given species on the given row
@@ -100,7 +100,7 @@ for gamePlayedData in gamePlayedDataList:
 	
 	print "sum correctly placed tiles: ", sumCorrect
 	
-	#Calculate the Minimum Total Number of Turns given the Starting Map
+	#Calculate the Minimum Total Number of Turns required given the Starting Map
 	numTiles = (int(levelDiff) + 1) * 4
 	turnsMin = (numTiles - sumCorrect) / 2
 	
